@@ -1,28 +1,35 @@
-import { useState } from 'react'
+import { useEffect } from 'react';
+import NavBar from './components/NavBar.jsx';
+import Hero3D from './components/Hero3D.jsx';
+import BlogFeed from './components/BlogFeed.jsx';
+import LiveCollabPanel from './components/LiveCollabPanel.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    document.documentElement.classList.add('antialiased');
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-[#0b0b12] text-white">
+      <NavBar />
+      <main>
+        <Hero3D />
+        <section className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 -mt-16 relative z-10">
+          <div className="lg:col-span-2">
+            <BlogFeed />
+          </div>
+          <div className="lg:col-span-1">
+            <LiveCollabPanel />
+          </div>
+        </section>
+      </main>
+      <footer className="mt-20 border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-10 text-sm text-white/60">
+          <p>© {new Date().getFullYear()} Immersion.blog — Built for interactive, collaborative stories.</p>
         </div>
-      </div>
+      </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
